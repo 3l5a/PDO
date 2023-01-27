@@ -7,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modification d'un ancien jeu</title>
     <style>
-
-:root {
-    font-family: sans-serif;
-    line-height: 1.2rem;
-}
-</style>
+        :root {
+            font-family: sans-serif;
+            line-height: 1.2rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,18 +21,16 @@
     <?php
     include "connexion.php";
 
-    $id = (int)$_GET['id'];
+    $id = (int)filter_input(INPUT_GET, 'id');
 
     $fetchGames = "SELECT * FROM mes_jeux";
     $statement = $pdo->query($fetchGames);
 
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    //chercher le jeu dont l'id correspond pour pouvoir afficher ses infos dans les textareas
-    foreach($result as $game)
-    {
-        if ($game['id'] == $id)
-        {
+    //chercher le jeu dont la clé correspond à l'id pour pouvoir afficher ses infos dans les textareas
+    foreach ($result as $game) {
+        if ($game['id'] == $id) {
             $nom = $game['nom'];
             $console = $game['console'];
         }
@@ -57,11 +54,10 @@
     $majNom = filter_input(INPUT_POST, 'nom');
     $majConsole = filter_input(INPUT_POST, 'console');
 
-    if (isset($majNom) && !empty($majNom)
-        && isset($majConsole) && !empty($majConsole)) 
-        {
-
-
+    if (
+        isset($majNom) && !empty($majNom)
+        && isset($majConsole) && !empty($majConsole)
+    ) {
         $statement = $pdo->prepare('UPDATE mes_jeux SET nom = :nom, console = :console WHERE id= :id');
 
         $statement->bindParam(':console', $majConsole, PDO::PARAM_STR);
@@ -70,11 +66,9 @@
 
         $resultUpdate = $statement->execute();
         echo "Le jeu $majNom a été modifié avec succès";
-
-        }else
-        {
-            echo "Veuillez modifier au moins un des deux champs";
-        };
+    } else {
+        echo "Veuillez modifier au moins un des deux champs";
+    };
     ?>
 
 </body>

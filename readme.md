@@ -10,4 +10,3 @@ C'est cette méthode qui est la plus adaptée à notre requête car on demande �
 
 
 
-////////// PARTIE REQUETES AVEC PARAMETRES : connexion.php;

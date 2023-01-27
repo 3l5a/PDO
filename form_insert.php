@@ -21,17 +21,17 @@
     </form>
 
     <?php
-
     include "insert.php";
-
     if (
         isset($newGame) && !empty($newGame)
         && isset($newConsole) && !empty($newConsole)
     ) {
+        
+        $result = $statement->execute(); // récupérat° de insert.php / sinon erreur avant d'entrer un jeu car la page essaie d'afficher un jeu pas encore entré
         echo "Le jeu $newGame a été ajouté avec succès";
+    } else {
+        echo "Veuillez ajouter un jeu";
     };
-
-
 
     ?>
 </body>

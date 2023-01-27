@@ -33,7 +33,10 @@ $statement = $pdo->prepare($sql);
 $statement->bindParam(':nom', $newGame, PDO::PARAM_STR);
 $statement->bindParam(':console', $newConsole, PDO::PARAM_STR);
 
-$result = $statement->execute();
+
 echo "<br>";
-var_dump($result); //booléen true si bien executé
-echo $pdo->lastInsertId(); //checker la derniere ligne ajoutée
+//var_dump($result); //booléen true si bien executé
+//echo $pdo->lastInsertId(); //checker la derniere ligne ajoutée
+
+
+
